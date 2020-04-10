@@ -1,0 +1,20 @@
+{
+  "name": "csv-manipulation",
+  "version": "1.0.0",
+  "description": "Manipulating CSV data with JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisvaillancourt/csv-manipulation.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisvaillancourt/csv-manipulation/issues"
+  },
+  "homepage": "https://github.com/chrisvaillancourt/csv-manipulation#readme"
+}
