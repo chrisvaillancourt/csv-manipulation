@@ -1,6 +1,6 @@
-
+import { csv } from "d3-fetch";
 async function getCsv() {
-  let data = await d3.csv('../data/vulnerability-data.csv')
+  let data = await csv('../data/vulnerability-data.csv')
   console.log(`data length: ${data.length}`)
   console.log(data[0])
   
@@ -117,4 +117,5 @@ getCsv().then(data => {
   a.href = url
   a.textContent = "DL"
   document.querySelector('div').appendChild(a)
+  console.log('end')
 })
