@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/chrisvaillancourt/csv-manipulation/issues"
   },
-  "homepage": "https://github.com/chrisvaillancourt/csv-manipulation#readme"
+  "homepage": "https://github.com/chrisvaillancourt/csv-manipulation#readme",
+  "devDependencies": {
+    "rollup": "^2.6.0"
+  }
 }
