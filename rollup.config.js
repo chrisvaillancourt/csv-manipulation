@@ -3,7 +3,8 @@ export default {
   input: 'src/index.js',
   output: {
     file: 'src/bundle.js',
-    format: 'es'
+    format: 'es',
+    sourcemap: true,
   },
   plugins: [resolve()],
 

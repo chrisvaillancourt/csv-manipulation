@@ -187,21 +187,23 @@ function dsvParse(parse) {
 
 var csv$1 = dsvParse(csvParse);
 
-async function getCsv() {
+async function manipulateData() {
+  console.time('manipulateData');
   let data = await csv$1('../data/vulnerability-data.csv');
-  console.log(`data length: ${data.length}`);
-  console.log(data[0]);
-  
-  data = data.slice(0, 10000); // temporarily reduce data size
+  // console.log(`data length: ${data.length}`)
+  // console.log(data[0])
+  const allIds = new Set(data.map(row => row["GEOID"]));
+  // data = data.slice(0, 10000); // temporarily reduce data size
   const idsArr = new Set(data.map(row => row["GEOID"]));
   let output = [];
-  console.time('forEach loop');
-  idsArr.forEach((id, index) => {
-
+  // console.log(data.filter(item => item["GEOID"] == '02020000101'))
+  
+  idsArr.forEach(id => {
     let filtered = data.filter(item => item["GEOID"] == id).reduce((accum, currVal) => {
-      accum[currVal["aspect_name"]] = currVal["value"];
-      // TODO ADD PRANK ATTRIBUTE
-      //TODO USE A MAP INSTEAD OF OBJECT LITERAL
+      const colName = currVal["aspect_name"];
+      accum[colName] = currVal["value"];
+      accum[`${colName}_prank`] = currVal["prank"];
+
       return accum;
     }, {
       id,
@@ -212,14 +214,13 @@ async function getCsv() {
 
 
   });
-  console.timeEnd('forEach loop');
+  console.timeEnd('manipulateData');
   return output
 }
 
-
-
-getCsv().then(data => {
-  console.log(data);
+manipulateData().then(data => {
+  // console.log(data)
+  console.time('parsing json');
   const json = JSON.stringify(data);
   const blob = new Blob([json], { type: "application/json" });
   const url = URL.createObjectURL(blob);
@@ -228,5 +229,6 @@ getCsv().then(data => {
   a.href = url;
   a.textContent = "DL";
   document.querySelector('div').appendChild(a);
-  console.log('end');
+  console.timeEnd('parsing json');
 });
+//# sourceMappingURL=bundle.js.map
